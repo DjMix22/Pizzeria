@@ -25,32 +25,15 @@ def decorator_check(pizzeria):
 
 
 def choose_product(number, prices_user):
-    if number == "1":
-        print("Пепперони! Отличный выбор")
-        prices_user[599.99] = "Пепперони"
-
-    elif number == "2":
-        print("Сырная! Отличный выбор")
-        prices_user[549.99] = "Сырная пицца"
-
-    elif number == "3":
-        print("Timosha pizza! Прекрасный выбор!")
-        prices_user[699.99] = "Timosha pizza"
-
-    elif number == "4":
-        print("Соус добавлен!")
-        prices_user[59.99] = "Сырный соус"
-
-    elif number == "5":
-        print("Соус добавлен!")
-        prices_user[69.99] = "Кетчуп"
-
-    elif number == "6":
-        print("О наличии этого соуса ходят легенды...")
-        prices_user[99999.99] = "Mystery sauce"
-
+    product_list = {"1": ["Пепперони! Отличный выбор", 599.99, "Пепперони"], "2": ["Сырная! Отличный выбор", 549.99, "Сырная пицца"],
+                    "3": ["Timosha pizza! Прекрасный выбор!", 699.99, "Timosha pizza"], "4": ["Соус добавлен!", 59.99, "Сырный соус"],
+                    "5": ["Соус добавлен", 69.99, "Кетчуп"], "6": ["О наличии этого соуса ходят легенды...", 99999.99, "Mystery sauce"]}
+    if number in product_list:
+        print(product_list[number][0])
+        prices_user[product_list[number][1]] = product_list[number][2]
     else:
-        print("Этого блюда нет в нашем ассортименте :(")
+        print("Такой товар не найден")
+        choose_product(input("Введите номер блюда!: "), prices_user)
 
 
 def pay(value, prices_user):
@@ -104,7 +87,7 @@ def pizzeria():
 
         choose_product(input("Введите номер блюда!: "), prices_user)
 
-        value = pay(input("Продолжить выбор вкуснейших пицц? 1) Да 2) Нет: "), prices_user)
+        value = pay(input("Продолжить выбор вкуснейших блюд? 1) Да 2) Нет: "), prices_user)
 
     return [pay, money, sum(prices_user), prices_user]
 

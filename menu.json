@@ -3,40 +3,34 @@
     {
       "number": 1,
       "product": "Пепперони",
-      "price": 599.99,
-      "text": "Пепперони! Отличный выбор"
+      "price": 599.99
     },
     {
       "number": 2,
       "product": "Сырная пицца",
-      "price": 549.99,
-      "text": "Сырная! Отличный выбор"
+      "price": 549.99
     },
     {
       "number": 3,
       "product": "Timosha pizza",
-      "price": 699.99,
-      "text": "Timosha pizza! Прекрасный выбор!"
+      "price": 699.99
     } 
   ],
   "Соусы": [
     {
       "number": 4,
       "product": "Сырный",
-      "price": 59.99,
-      "text": "Соус добавлен!"
+      "price": 59.99
     },
     {
       "number": 5,
       "product": "Кетчуп",
-      "price": 69.99,
-      "text": "Соус добавлен!"
+      "price": 69.99
     },
     {
       "number": 6,
       "product": "Mystery sauce",
-      "price": 99999.99,
-      "text": "О наличии этого соуса ходят легенды..."
+      "price": 99999.99
     }
   ]
 }

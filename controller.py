@@ -15,11 +15,15 @@ def pizzeria(value=True):
 
     user_list = {}
     while value:
-        view.display_menu(user_list)
-        model.choose_product(input("Введите номер блюда!: "), user_list, product_list)
-        user_list = model.delete_product(input("Желаете ли вы удалить блюдо из вашей корзины?\n1) Да 2) Нет: "), user_list)
-        arr = model.pay(input("Продолжить выбор вкуснейших блюд?\n1) Да 2) Нет: "), user_list)
-        value = arr[0]
+        try:
+            view.display_menu(user_list)
+            model.choose_product(input("Введите номер блюда!: "), user_list, product_list)
+            user_list = model.delete_product(input("Желаете ли вы удалить блюдо из вашей корзины?\n1) Да 2) Нет: "), user_list)
+            arr = model.pay(input("Продолжить выбор вкуснейших блюд?\n1) Да 2) Нет: "), user_list)
+            value = arr[0]
+        except TypeError:
+            while type(arr) is not list:
+                arr = model.pay(input("Продолжить выбор вкуснейших блюд?\n1) Да 2) Нет: "), user_list)
 
     return [arr[1], arr[2], sum(user_list), user_list]
 

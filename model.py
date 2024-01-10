@@ -1,3 +1,6 @@
+import time
+
+
 def decorator_check(func):
     def wrapper():
         lst = func()
@@ -26,7 +29,7 @@ def choose_product(number, user_list, product_list):
         user_list[product_list[number][1]] = product_list[number][0]
     else:
         print("Такой товар не найден")
-        choose_product(input("Введите номер блюда!: "), user_list)
+        choose_product(input("Введите номер блюда!: "), user_list, product_list)
 
 
 def delete_product(number, user_list, j=0):
@@ -54,36 +57,39 @@ def delete_product(number, user_list, j=0):
 
 
 def pay(value, user_list):
-    if value == "1":
-        value_new = True
-        return [value_new]
-    elif value == "2":
-        value_new = False
-
-        print(f"Сумма ваших товаров равна: {sum(user_list)}")
-
-        payment = input("Выберите оплату! 1) Наличные 2) Карта: ")
-
-        if payment == "1":
-            money = int(input("Положите деньги и мы вернем сдачу!: "))
-            if money == sum(user_list):
-                print("Оплата закончена!  Удачного дня!")
-                return [value_new, payment, money]
-            elif money > sum(user_list):
-                print(f"Ваша сдача: {money - sum(user_list)}")
-                print("Оплата закончена! Удачного дня!")
-                return [value_new, payment, money]
-            else:
-                print("Вам не хватает!")
-                exit()
-        elif payment == "2":
-            money = sum(user_list)
-            print("Приложите карту!\nОплата окончена! Удачного дня")
-            return [value_new, payment, money]
-        else:
+    try:
+        if value != "1" and value != "2":
             print("Неверное значение!")
             pay(input("Продолжить выбор вкуснейших блюд?\n1) Да 2) Нет: "), user_list)
+        else:
+            if value == "1":
+                value_new = True
+                return [value_new]
 
-    else:
+            elif value == "2":
+                value_new = False
+
+                print(f"Сумма ваших товаров равна: {sum(user_list)}")
+
+                payment = input("Выберите оплату! 1) Наличные 2) Карта: ")
+
+                if payment == "1":
+                    money = int(input("Положите деньги и мы вернем сдачу!: "))
+
+                    if money == sum(user_list) or money > sum(user_list):
+                        print("Оплата окончена!  Удачного дня!")
+                        return [value_new, payment, money]
+
+                    else:
+                        print("Вам не хватает!")
+                        exit()
+
+                elif payment == "2":
+                    money = sum(user_list)
+                    print("Приложите карту:")
+                    time.sleep(1)
+                    print("Оплата окончена! Удачного дня!")
+                    return [value_new, payment, money]
+    except ValueError:
         print("Неверное значение!")
         pay(input("Продолжить выбор вкуснейших блюд?\n1) Да 2) Нет: "), user_list)
